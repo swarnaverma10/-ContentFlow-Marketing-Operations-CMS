@@ -34,7 +34,7 @@ const Signup = () => {
     setLoading(true);
     setError("");
     try {
-      const response = await axios.post("http://127.0.0.1:5000/api/auth/register", formData);
+      const response = await axios.post(`${API_URL}/api/auth/register`, formData);
       console.log("Registration Successful:", response.data);
       alert("Registration Successful! Now please login.");
       navigate("/login");
