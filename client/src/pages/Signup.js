@@ -40,14 +40,13 @@ const Signup = () => {
       alert("Registration Successful! Now please login.");
       navigate("/login");
     } catch (err) {
-      console.error("Registration Error:", err);
-      // Detailed error reporting
+      console.log("Full Registration Error Context:", err);
       if (err.response?.status === 400 && err.response?.data?.keyPattern?.email) {
           setError("Email is already registered. Please try a different one.");
       } else if (err.code === "ERR_NETWORK") {
-          setError(`Cannot connect to server. Ensure backend is running on ${API_URL.replace('http://', '')}`);
+          setError(`Cannot connect to server at ${API_URL}. Check if your backend is running.`);
       } else {
-          setError(err.response?.data?.message || "Something went wrong. Please check your details.");
+          setError(err.response?.data?.message || err.message || "Something went wrong. Please check your details.");
       }
     } finally {
       setLoading(false);

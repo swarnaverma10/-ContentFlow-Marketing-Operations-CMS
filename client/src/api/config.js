@@ -1,3 +1,2 @@
-const API_URL = "https://contentflow-marketing-operations-cms.onrender.com";
-
+const API_URL = "http://localhost:5001";
 export default API_URL;
