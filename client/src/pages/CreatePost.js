@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
+import API_URL from "../api/config";
 import RichTextEditor from "../components/RichTextEditor";
 import { motion, AnimatePresence } from "framer-motion";
 import slugify from "react-slugify";
@@ -111,7 +112,7 @@ function CreatePost() {
       if (metaDescription) formData.append("metaDescription", metaDescription);
       if (image) formData.append("image", image);
 
-      await axios.post("http://127.0.0.1:5000/api/create-post", formData);
+      await axios.post(`${API_URL}/api/create-post`, formData);
       alert("Post Created Successfully ✅");
       localStorage.removeItem("post-draft");
       window.location.href = "/";

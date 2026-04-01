@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../api/config";
 import { 
   BarChart, 
   Bar, 
@@ -45,7 +46,7 @@ function Analytics() {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:5000/api/posts");
+      const res = await axios.get(`${API_URL}/api/posts`);
       setPosts(res.data);
     } catch (err) {
       console.error(err);

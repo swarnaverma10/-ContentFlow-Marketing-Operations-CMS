@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../api/config";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Search, 
@@ -26,7 +27,7 @@ function MediaLibrary() {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:5000/api/posts");
+      const res = await axios.get(`${API_URL}/api/posts`);
       setPosts(res.data);
     } catch (err) {
       console.error(err);
@@ -126,7 +127,7 @@ function MediaLibrary() {
               >
                 <div className={`relative overflow-hidden rounded-[2rem] shadow-sm ${viewMode === 'list' ? 'w-24 h-24 flex-shrink-0' : 'aspect-square mb-4'}`}>
                   <img
-                    src={`http://127.0.0.1:5000/uploads/${post.image}`}
+                    src={`${API_URL}/uploads/${post.image}`}
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../api/config";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -70,7 +71,7 @@ function Dashboard() {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://127.0.0.1:5000/api/posts?status=${filterStatus}&category=${filterCategory}&sort=${sortBy}`);
+      const res = await axios.get(`${API_URL}/api/posts?status=${filterStatus}&category=${filterCategory}&sort=${sortBy}`);
       setPosts(res.data);
     } catch (error) {
       console.error(error);
@@ -82,7 +83,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure? This cannot be undone.")) return;
     try {
-      await axios.delete(`http://127.0.0.1:5000/api/delete-post/${id}`);
+      await axios.delete(`${API_URL}/api/delete-post/${id}`);
       fetchPosts();
     } catch (error) {
       console.error(error);
@@ -91,7 +92,7 @@ function Dashboard() {
 
   const handleDuplicate = async (id) => {
     try {
-      await axios.post(`http://127.0.0.1:5000/api/duplicate-post/${id}`);
+      await axios.post(`${API_URL}/api/duplicate-post/${id}`);
       fetchPosts();
       alert("Post Cloned Successfully");
     } catch (error) {

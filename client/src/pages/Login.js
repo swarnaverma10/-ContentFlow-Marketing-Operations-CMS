@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../api/config";
 import { AuthContext } from "../context/AuthContext";
 import { motion } from "framer-motion";
 import { Mail, Lock, LogIn, Key, Sparkles, AlertCircle } from "lucide-react";
@@ -18,7 +19,7 @@ const Login = () => {
         setLoading(true);
         setError("");
         try {
-            const response = await axios.post("http://127.0.0.1:5000/api/auth/login", { email, password });
+            const response = await axios.post(`${API_URL}/api/auth/login`, { email, password });
             login(response.data.token);
             navigate("/");
         } catch (err) {
