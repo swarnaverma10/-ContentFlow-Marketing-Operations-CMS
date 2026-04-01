@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import API_URL from "../api/config";
 import { 
@@ -40,11 +40,7 @@ function Analytics() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     try {
       const res = await axios.get(`${API_URL}/api/posts`);
       setPosts(res.data);
@@ -53,7 +49,11 @@ function Analytics() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
 
   // Calculate Velocity (Posts per day/category)
   const categories = ["General", "Marketing", "Technology", "Business", "Design"];

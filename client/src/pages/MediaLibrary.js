@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import API_URL from "../api/config";
 import { motion, AnimatePresence } from "framer-motion";
@@ -21,11 +21,7 @@ function MediaLibrary() {
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState("grid");
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     try {
       const res = await axios.get(`${API_URL}/api/posts`);
       setPosts(res.data);
@@ -34,7 +30,11 @@ function MediaLibrary() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
 
   const images = posts.filter(p => 
     p.image && p.title.toLowerCase().includes(searchTerm.toLowerCase())
