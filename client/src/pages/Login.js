@@ -4,7 +4,7 @@ import axios from "axios";
 import API_URL from "../api/config";
 import { AuthContext } from "../context/AuthContext";
 import { motion } from "framer-motion";
-import { Mail, Lock, LogIn, Key, Sparkles, AlertCircle } from "lucide-react";
+import { Mail, Lock, LogIn, Key, AlertCircle } from "lucide-react";
 
 const Login = () => {
     const { login } = useContext(AuthContext);

@@ -5,19 +5,14 @@ import {
   BellRing, 
   Globe, 
   Image as ImageIcon, 
-  UploadCloud, 
   Save, 
   Command,
-  Layout,
   Type,
   Cpu,
-  Mail,
   Zap,
   Lock,
   Moon,
-  Sun,
-  Activity,
-  CreditCard
+  Activity
 } from "lucide-react";
 
 const Toggle = ({ active, onClick }) => (
@@ -34,16 +29,13 @@ function Settings() {
   const [siteName, setSiteName] = useState("ContentFlow CMS");
   const [brandColor, setBrandColor] = useState("#4f46e5");
   const [tagline, setTagline] = useState("Next-gen Content Management");
-  const [logo, setLogo] = useState(null);
   const [preview, setPreview] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
   
   // New Enhanced States
   const [darkMode, setDarkMode] = useState(false);
-  const [notifications, setNotifications] = useState(true);
   const [aiEnabled, setAiEnabled] = useState(true);
   const [apiKey, setApiKey] = useState("••••••••••••••••");
-  const [autoSchedule, setAutoSchedule] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("site-settings");
@@ -67,7 +59,6 @@ function Settings() {
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-        setLogo(file);
         setPreview(URL.createObjectURL(file));
     }
   };

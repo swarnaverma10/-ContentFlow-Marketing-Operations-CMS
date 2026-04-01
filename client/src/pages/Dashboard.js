@@ -9,7 +9,6 @@ import {
   Plus, 
   Edit3, 
   Trash2, 
-  ExternalLink,
   ChevronRight,
   TrendingUp,
   Clock,
@@ -19,7 +18,6 @@ import {
   ArrowUpDown,
   BookOpen,
   ChevronLeft,
-  Search,
   MoreVertical,
   Zap
 } from "lucide-react";
@@ -278,7 +276,7 @@ function Dashboard() {
               <div className="relative mb-6 overflow-hidden rounded-[2rem] aspect-[16/10] shadow-lg">
                 {post.image ? (
                   <img
-                    src={`http://127.0.0.1:5000/uploads/${post.image}`}
+                    src={`${API_URL}/uploads/${post.image}`}
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
