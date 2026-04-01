@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import API_URL from "../api/config";
 import { useNavigate } from "react-router-dom";
@@ -62,11 +62,7 @@ function Dashboard() {
   
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchPosts();
-  }, [filterStatus, filterCategory, sortBy]);
-
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     setLoading(true);
     try {
       const res = await axios.get(`${API_URL}/api/posts?status=${filterStatus}&category=${filterCategory}&sort=${sortBy}`);
@@ -76,7 +72,11 @@ function Dashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filterStatus, filterCategory, sortBy]);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure? This cannot be undone.")) return;

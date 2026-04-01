@@ -1,23 +1,19 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import API_URL from "../api/config";
 import RichTextEditor from "../components/RichTextEditor";
-import { motion, AnimatePresence } from "framer-motion";
 import { 
   Save, 
   Image as ImageIcon, 
   X, 
-  UploadCloud, 
-  Search, 
   Globe, 
   Type,
   Layout,
+  UploadCloud,
   Tag,
   FolderOpen,
-  Calendar,
-  Clock,
-  ArrowLeft,
-  Link
+  ArrowLeft
 } from "lucide-react";
 
 function EditPost() {
@@ -26,7 +22,6 @@ function EditPost() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [slug, setSlug] = useState("");
   const [status, setStatus] = useState("Draft");
   const [category, setCategory] = useState("General");
   const [tags, setTags] = useState([]);
@@ -50,20 +45,19 @@ function EditPost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await axios.get("http://127.0.0.1:5000/api/posts");
+        const res = await axios.get(`${API_URL}/api/posts`);
         const post = res.data.find(p => p._id === id);
 
         if (post) {
           setTitle(post.title || "");
           setContent(post.content || "");
-          setSlug(post.slug || "");
           setStatus(post.status || "Draft");
           setCategory(post.category || "General");
           setTags(post.tags || []);
           setScheduledDate(post.scheduledDate ? post.scheduledDate.substring(0, 16) : "");
           setMetaTitle(post.metaTitle || "");
           setMetaDescription(post.metaDescription || "");
-          if (post.image) setPreview(`http://127.0.0.1:5000/uploads/${post.image}`);
+          if (post.image) setPreview(`${API_URL}/uploads/${post.image}`);
         }
       } catch (error) {
         console.error(error);
@@ -90,7 +84,7 @@ function EditPost() {
       formData.append("metaDescription", metaDescription);
       if (image) formData.append("image", image);
 
-      await axios.put(`http://127.0.0.1:5000/api/update-post/${id}`, formData);
+      await axios.put(`${API_URL}/api/update-post/${id}`, formData);
       alert("Post Synchronized Successfully ✅");
       navigate("/");
     } catch (error) {
