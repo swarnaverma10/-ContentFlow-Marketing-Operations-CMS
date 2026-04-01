@@ -337,8 +337,11 @@ function Dashboard() {
                         <Trash2 size={18} />
                       </button>
                     </div>
-                    <button className="flex items-center gap-2 text-[10px] font-black text-slate-400 hover:text-indigo-600 transition-all uppercase tracking-[0.2em] group/btn">
-                      LIVE PREVIEW <ChevronRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                    <button 
+                      onClick={() => navigate(`/read/${post._id}`)}
+                      className="flex items-center gap-2 text-[10px] font-black text-slate-400 hover:text-indigo-600 transition-all uppercase tracking-[0.2em] group/btn"
+                    >
+                      READ ARTICLE <ChevronRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                     </button>
                   </div>
               </div>

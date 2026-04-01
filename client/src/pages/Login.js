@@ -24,7 +24,11 @@ const Login = () => {
             navigate("/");
         } catch (err) {
             console.error("Login component error:", err);
-            setError(err.response?.data?.message || "Invalid Email or Password");
+            if (err.code === "ERR_NETWORK") {
+                setError(`Cannot connect to server. Ensure backend is running on ${API_URL.replace('http://', '')}`);
+            } else {
+                setError(err.response?.data?.message || "Invalid Email or Password");
+            }
         } finally {
             setLoading(false);
         }

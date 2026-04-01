@@ -26,6 +26,7 @@ import EditPost from "./pages/EditPost";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Settings from "./pages/Settings";
+import ReadPost from "./pages/ReadPost";
 
 const SidebarItem = ({ to, icon: Icon, label, active }) => (
   <Link
@@ -160,6 +161,7 @@ function AppContent() {
                 <Route path="/media" element={<ProtectedRoute><MediaLibrary /></ProtectedRoute>} />
                 <Route path="/edit/:id" element={<ProtectedRoute><EditPost /></ProtectedRoute>} />
                 <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+                <Route path="/read/:id" element={<ProtectedRoute><ReadPost /></ProtectedRoute>} />
                 <Route path="*" element={<Dashboard />} />
               </Routes>
             </motion.div>

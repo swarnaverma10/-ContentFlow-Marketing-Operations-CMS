@@ -45,7 +45,7 @@ const Signup = () => {
       if (err.response?.status === 400 && err.response?.data?.keyPattern?.email) {
           setError("Email is already registered. Please try a different one.");
       } else if (err.code === "ERR_NETWORK") {
-          setError("Cannot connect to server. Ensure backend is running on port 5000.");
+          setError(`Cannot connect to server. Ensure backend is running on ${API_URL.replace('http://', '')}`);
       } else {
           setError(err.response?.data?.message || "Something went wrong. Please check your details.");
       }

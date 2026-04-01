@@ -8,6 +8,14 @@ ContentFlow is a high-performance, enterprise-ready Marketing Operations CMS. It
 
 ---
 
+## 🚀 Live Deployments
+
+- **🌐 Client (Frontend):** [ContentFlow Live](https://content-flow-marketing-opera-git-a38ad0-swarnaverma10s-projects.vercel.app)
+- **⚙️ Backend (API):** [ContentFlow API](https://contentflow-marketing-operations-cms.onrender.com)
+
+---
+
+
 ## 💎 The Enterprise Edge
 
 This isn't just a CMS; it's a content command center designed for high-scale marketing teams.
@@ -20,7 +28,7 @@ This isn't just a CMS; it's a content command center designed for high-scale mar
 ### 📊 **Intelligence Console**
 - **Publication Velocity**: Track publication surges across 7-day windows using optimized `Recharts` visualizations.
 *   **Asset Density Mapping**: Analyze media-to-text ratios to optimize for engagement.
-*   **Deployment Metrics**: Real-time status of Draft, Published, and Scheduled content.
+*   **Deployment Metrics**: Real-time status of Draft, Published, and Scheduled content.a
 
 ### 🕒 **Scheduled Deployment**
 - **Advanced Scheduler**: Set future release dates; our backend `node-cron` engine handles the deployment automatically.
